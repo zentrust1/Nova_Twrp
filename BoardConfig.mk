@@ -135,10 +135,25 @@ TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 TARGET_USES_LOGD := true
 TWRP_INCLUDE_LOGCAT := true
 
+# Decryption
+TW_USE_FSCRYPT_POLICY := 2
+TW_INCLUDE_CRYPTO := true
+TW_INCLUDE_CRYPTO_FBE := true
+TW_INCLUDE_FBE_METADATA_DECRYPT := true
+TW_RECOVERY_ADDITIONAL_RELINK_LIBRARY_FILES += \
+    $(TARGET_OUT_SHARED_LIBRARIES)/libkeymaster4.so \
+    $(TARGET_OUT_SHARED_LIBRARIES)/libpuresoftkeymasterdevice.so
+
 ## TWRP-Specific configuration
 TW_THEME := portrait_hdpi
 RECOVERY_SDCARD_ON_DATA := true
-
+TW_EXCLUDE_TWRPAPP := true
+TW_INCLUDE_REPACKTOOLS := true
+TW_EXCLUDE_APEX := true
+TW_INCLUDE_FASTBOOTD := true
+TWRP_INCLUDE_LOGCAT := true
+TARGET_USES_LOGD := true
+TARGET_USES_MKE2FS := true
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /dev/block/loop%d
 TW_BRIGHTNESS_PATH := "/sys/class/leds/lcd-backlight/brightness"
 TW_DEFAULT_BRIGHTNESS := 1200
@@ -148,7 +163,6 @@ TW_H_OFFSET := -80
 TW_EXCLUDE_DEFAULT_USB_INIT := true
 TW_EXCLUDE_PYTHON := true
 TW_EXCLUDE_NANO := true
-TW_EXCLUDE_TWRPAPP := true
 TW_EXTRA_LANGUAGES := true
 TW_INCLUDE_NTFS_3G := true
 TW_NO_SCREEN_BLANK := true
@@ -158,5 +172,7 @@ TW_HAS_MTP := true
 TW_INCLUDE_RESETPROP := true
 TW_INPUT_BLACKLIST := "hbtp_vm"
 TW_USE_TOOLBOX := true
+PB_TORCH_PATH := "/sys/devices/virtual/torch/torch/torch_level"
+PB_TORCH_MAX_BRIGHTNESS := 1
 # Maintainer/Version
 TW_DEVICE_VERSION := kangrusuh
